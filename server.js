@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
+const clients = [];
 
 // Создание потока записи в файл лога
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
@@ -19,15 +20,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.post('/submit', (req, res) => {
+    // Добавление данных клиента в массив
+    const client = req.body;
+    clients.push(client);
+
     // Логирование данных формы в консоль
-    console.log('Получены данные формы:', req.body);
+    console.log('Получены данные формы:', client);
 
-    // Вы можете добавить свою логику для обработки данных формы здесь
+    // Отправка обновленного списка клиентов в ответе
+    res.json(clients);
+});
 
-    res.send('Спасибо за запись! Мы свяжемся с вами для подтверждения.');
+app.get('/clients', (req, res) => {
+    res.json(clients);
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
