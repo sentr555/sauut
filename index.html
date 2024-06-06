@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на прием</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Запись на прием</h1>
+        <div class="working-hours">
+            <p>Время работы: с 10:00 до 19:00</p>
+            <p>Рабочие дни: с понедельника по пятницу</p>
+        </div>
+        <form id="appointment-form">
+            <div class="form-group">
+                <label for="first-name">Имя:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Фамилия:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Номер телефона:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="appointment-time">Время записи:</label>
+                <input type="time" id="appointment-time" name="appointment-time" min="10:00" max="19:00" required>
+            </div>
+            <div class="form-group">
+                <label for="appointment-date">Дата записи:</label>
+                <input type="date" id="appointment-date" name="appointment-date" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Записаться</button>
+            </div>
+        </form>
+        <div id="confirmation" class="hidden">
+            Спасибо за запись! Мы свяжемся с вами для подтверждения.
+        </div>
+    </div>
+</body>
+</html>
+
